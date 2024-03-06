@@ -4,7 +4,7 @@ using Imprex.Queries.Services;
 using Imprex.Queries.Utils;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Streamevent.Data.Exceptions;
+using Streamevent.Identity.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +56,7 @@ namespace Imprex.Queries
                 .Where(m => m.GetGenericArguments().Length == 2)
                 .FirstOrDefault() ?? throw new Exception($"Can't get order method {name} from {source.FullName}.");
         }
+
         #endregion
 
         #region Fields
