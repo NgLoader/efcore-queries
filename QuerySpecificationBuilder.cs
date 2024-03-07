@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Imprex.Queries.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Imprex.Queries.Utils;
 
 namespace Imprex.Queries
 {
@@ -11,8 +11,19 @@ namespace Imprex.Queries
         where TEntity : class
         where TDto : class, new()
     {
+        #region Constants
+
+        private static readonly MethodInfo SelectMethod = Queryable.AsQueryable(typeof(Enumerable).GetMethods())
+            .Where(e => e.Name == "Select")
+            .Where(e => e.GetParameters().Length == 2)
+            .Where(e => e.GetParameters()[1].ParameterType.GenericTypeArguments.Length == 2)
+            .First()
+            ?? throw new Exception("IEnumerable::Select(entity, dto) is missing.");
+
+        #endregion
+
         #region Fields
-        
+
         private readonly Dictionary<PropertyInfo, LambdaExpression> dtoMapping = new();
 
         #endregion
@@ -23,6 +34,34 @@ namespace Imprex.Queries
         #endregion
 
         #region Registers
+
+        public QuerySpecificationBuilder<TEntity, TDto> Register<TEntityParameter, TDtoParameter>(
+            Expression<Func<TEntity, IEnumerable<TEntityParameter>>> entityExpression,
+            Expression<Func<TEntityParameter, TDtoParameter>> transformationExpression,
+            Expression<Func<TDto, IEnumerable<TDtoParameter>>> dtoExpression)
+        {
+            var entityParameter = Expression.Parameter(typeof(TEntity));
+            Expression entityBody = ExpressionModifier.BindLambdaBody(entityExpression, entityParameter);
+
+            var transformationParameter = Expression.Parameter(typeof(TEntityParameter));
+            var transformationBody = ExpressionModifier.BindLambdaBody(transformationExpression, transformationParameter);
+            var transformationLambda = Expression.Lambda<Func<TEntityParameter, TDtoParameter>>(transformationBody, transformationParameter);
+
+            var selectMethod = SelectMethod.MakeGenericMethod(typeof(TEntityParameter), typeof(TDtoParameter));
+            var selectCall = Expression.Call(
+                selectMethod,
+                entityBody,
+                transformationLambda);
+
+            var lambda = Expression.Lambda<Func<TEntity, IEnumerable<TDtoParameter>>>(
+                Expression.Condition(
+                    Expression.Equal(entityBody, Expression.Constant(null)),
+                    Expression.Constant(null, typeof(IEnumerable<TDtoParameter>)),
+                    selectCall
+                ), entityParameter);
+
+            return Register(lambda, dtoExpression);
+        }
 
         public QuerySpecificationBuilder<TEntity, TDto> Register<TEntityParameter, TDtoParameter>(
             Expression<Func<TEntity, TEntityParameter>> entityExpression,
@@ -57,9 +96,23 @@ namespace Imprex.Queries
             return this;
         }
 
+        public QuerySpecificationBuilder<TEntity, TDto> Register<TParameter>(Expression<Func<TEntity, IEnumerable<TParameter>>> entityExpression, Expression<Func<TDto, IEnumerable<TParameter>>> dtoExpression)
+        {
+            if (dtoExpression.Body is not MemberExpression member ||
+                member.Member is not PropertyInfo propertyInfo ||
+                !propertyInfo.CanRead || !propertyInfo.CanWrite)
+            {
+                throw new ArgumentException($"Expression {dtoExpression} is not a MemberExpression of a read- or writeable property.");
+            }
+
+            dtoMapping[propertyInfo] = entityExpression;
+            return this;
+        }
+
         #endregion
 
         #region Builders
+
         public Expression<Func<TEntity, TDto>> CreateConstructorExpression()
         {
             var parameter = Expression.Parameter(typeof(TEntity));

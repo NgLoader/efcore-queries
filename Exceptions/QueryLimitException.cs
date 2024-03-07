@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Streamevent.Data.Exceptions
+namespace Streamevent.Identity.Exceptions
 {
     public class QueryLimitException : Exception
     {
