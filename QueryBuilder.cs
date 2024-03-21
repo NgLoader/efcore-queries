@@ -1,5 +1,4 @@
 ﻿using Imprex.Queries.Dto;
-using Imprex.Queries.Exceptions;
 using Imprex.Queries.Options;
 using Imprex.Queries.Services;
 using Imprex.Queries.Utils;
@@ -227,7 +226,7 @@ namespace Imprex.Queries
         {
             if (sorts == null)
             {
-                return entities;
+                return entities.OrderBy(e => e);
             }
 
             if (sorts.Count > Limits.SortLimit)
@@ -257,7 +256,7 @@ namespace Imprex.Queries
                     .Invoke(null, [entities, entityExpression])!;
             }
 
-            return entities;
+            return first ? entities.OrderBy(e => e) : entities;
         }
 
         #endregion
