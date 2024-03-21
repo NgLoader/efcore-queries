@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Imprex.Queries.Dto;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -37,7 +38,8 @@ namespace Imprex.Queries.Converters
 
         public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
         {
-            throw new NotImplementedException();
+            writer.WriteStringValue(value.ToString());
+            // throw new NotImplementedException();
         }
     }
 }

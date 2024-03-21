@@ -2,7 +2,6 @@
 using Imprex.Queries.Options;
 using Imprex.Queries.Services;
 using Imprex.Queries.Utils;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Streamevent.Identity.Exceptions;
 using System;
@@ -11,7 +10,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
-using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Imprex.Queries
@@ -229,7 +227,7 @@ namespace Imprex.Queries
         {
             if (sorts == null)
             {
-                return entities;
+                return entities.OrderBy(e => e);
             }
 
             if (sorts.Count > Limits.SortLimit)
@@ -259,7 +257,7 @@ namespace Imprex.Queries
                     .Invoke(null, [entities, entityExpression])!;
             }
 
-            return entities;
+            return first ? entities.OrderBy(e => e) : entities;
         }
 
         #endregion
