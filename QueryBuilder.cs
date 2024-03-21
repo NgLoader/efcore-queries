@@ -3,7 +3,6 @@ using Imprex.Queries.Options;
 using Imprex.Queries.Services;
 using Imprex.Queries.Utils;
 using Microsoft.EntityFrameworkCore;
-using Streamevent.Identity.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
