@@ -3,6 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
+		<PackageId>NgLoader.EFCore.Queries</PackageId>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/NgLoader/efcore-queries</RepositoryUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
