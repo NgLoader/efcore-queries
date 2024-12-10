@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-    - '**.cs'
-    - '**.csproj'
+      - '**/*.cs'
+      - '**/*.csproj'
   push:
     paths:
-      - '**.cs'
-      - '**.csproj'
+      - '**/*.cs'
+      - '**/*.csproj'
       - '.github/workflows/build-backend.yml'
   schedule:
     - cron: '0 8 * * 4'
@@ -22,7 +22,7 @@ env:
 jobs:
   analyze:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    name: analyze
+    name: Analyze
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -35,27 +35,25 @@ jobs:
         language: ['csharp']
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
-        submodules: recursive
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          submodules: recursive
 
-    - run: git checkout HEAD^2
-      if: ${{ github.event_name == 'pull_request' }}
+      - run: git checkout HEAD^2
+        if: ${{ github.event_name == 'pull_request' }}
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: ${{ matrix.language }}
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
 
-      # Set up .NET Core
       - name: Backend Setup .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      # Cache .NET dependencies
       - name: Cache .NET Dependencies
         uses: actions/cache@v3
         with:
@@ -64,13 +62,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      # Install backend dependencies
       - name: Backend Install dependencies
         run: dotnet restore
 
-      # Build and publish backend
       - name: Backend Build
         run: dotnet publish -c Release -o ../app -r linux-x64 --self-contained true /p:UseAppHost=true
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
