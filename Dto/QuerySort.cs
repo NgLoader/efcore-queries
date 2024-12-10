@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Imprex.Queries.Dto
+namespace NgLoader.Queries.Dto
 {
     public class QuerySort
     {

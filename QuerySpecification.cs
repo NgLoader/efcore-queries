@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Imprex.Queries
+namespace NgLoader.Queries
 {
     public class QuerySpecification<TEntity, TDto>
         where TEntity : class

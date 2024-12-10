@@ -1,9 +1,9 @@
-﻿using Imprex.Queries.Dto;
+﻿using NgLoader.Queries.Dto;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Imprex.Queries.Extensions
+namespace NgLoader.Queries.Extensions
 {
     public static class IQueryableExtension
     {

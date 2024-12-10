@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Imprex.Queries.Exceptions
+namespace NgLoader.Queries.Exceptions
 {
     public class QueryLimitException : Exception
     {

@@ -1,4 +1,4 @@
-﻿namespace Imprex.Queries.Dto
+﻿namespace NgLoader.Queries.Dto
 {
     public enum QueryFilterCompositionOperator
     {

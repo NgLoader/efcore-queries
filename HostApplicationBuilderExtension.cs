@@ -1,11 +1,11 @@
-﻿using Imprex.Queries.Converters;
-using Imprex.Queries.Options;
-using Imprex.Queries.Services;
+﻿using NgLoader.Queries.Converters;
+using NgLoader.Queries.Options;
+using NgLoader.Queries.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Imprex.Queries
+namespace NgLoader.Queries
 {
     public static class HostApplicationBuilderExtension
     {

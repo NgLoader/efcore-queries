@@ -1,7 +1,7 @@
-﻿using Imprex.Queries.Options;
+﻿using NgLoader.Queries.Options;
 using Microsoft.Extensions.Options;
 
-namespace Imprex.Queries.Services
+namespace NgLoader.Queries.Services
 {
     public class QueryService
     {

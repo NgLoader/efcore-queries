@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
-using Imprex.Queries.Converters;
+using NgLoader.Queries.Converters;
 
-namespace Imprex.Queries.Dto
+namespace NgLoader.Queries.Dto
 {
     public class QueryFilterCondition : IQueryFilter
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Imprex.Queries.Dto
+namespace NgLoader.Queries.Dto
 {
 
     [Flags]

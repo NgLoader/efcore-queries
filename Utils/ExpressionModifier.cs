@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
-namespace Imprex.Queries.Utils
+namespace NgLoader.Queries.Utils
 {
     internal class ExpressionModifier : ExpressionVisitor
     {

@@ -7,7 +7,6 @@ on:
       - 'v*.*.*'
 
 env:
-  NODE_VERSION: '23'
   DOTNET_VERSION: '9.0'
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -22,12 +21,6 @@ jobs:
         with:
           fetch-depth: 2
           submodules: recursive
-
-      # Set up Node.js for the frontend
-      - name: Frontend Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
 
       # Set up .NET Core
       - name: Backend Setup .NET Core

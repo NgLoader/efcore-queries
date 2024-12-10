@@ -1,9 +1,9 @@
-﻿using Imprex.Queries.Dto;
+﻿using NgLoader.Queries.Dto;
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Imprex.Queries.Converters
+namespace NgLoader.Queries.Converters
 {
     public class QueryFilterConverter : JsonConverter<IQueryFilter>
     {

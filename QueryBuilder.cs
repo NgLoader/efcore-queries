@@ -1,7 +1,7 @@
-﻿using Imprex.Queries.Dto;
-using Imprex.Queries.Options;
-using Imprex.Queries.Services;
-using Imprex.Queries.Utils;
+﻿using NgLoader.Queries.Dto;
+using NgLoader.Queries.Options;
+using NgLoader.Queries.Services;
+using NgLoader.Queries.Utils;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,8 +10,9 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using NgLoader.Queries.Exceptions;
 
-namespace Imprex.Queries
+namespace NgLoader.Queries
 {
     public class QueryBuilder<TEntity, TDto>
         where TEntity : class

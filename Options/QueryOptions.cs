@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Imprex.Queries.Options
+namespace NgLoader.Queries.Options
 {
     public class QueryOptions
     {

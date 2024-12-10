@@ -1,4 +1,4 @@
-﻿namespace Imprex.Queries.Options
+﻿namespace NgLoader.Queries.Options
 {
     public class QueryLimits
     {

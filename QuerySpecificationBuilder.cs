@@ -1,11 +1,11 @@
-﻿using Imprex.Queries.Utils;
+﻿using NgLoader.Queries.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Imprex.Queries
+namespace NgLoader.Queries
 {
     public class QuerySpecificationBuilder<TEntity, TDto>
         where TEntity : class
