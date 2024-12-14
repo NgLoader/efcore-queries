@@ -14,6 +14,10 @@
 		<PackageProjectUrl>https://github.com/NgLoader/efcore-queries</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>efcore,queries</PackageTags>
+		<PackageIcon>logo.png</PackageIcon>
+		<Description>efcore-queries is a lightweight, powerful, and flexible extension for Entity Framework Core (EF Core), designed to simplify query composition and execution.
+It enables the construction of dynamic queries in a more readable and maintainable way, making it easier to interact with databases.
+This project is specifically designed to receive HTTP requests in JSON format and parse those queries to perform simple database queries.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -34,7 +38,21 @@
 			<PackagePath>\</PackagePath>
 			<Visible>False</Visible>
 		</None>
+		<None Update="logo.png">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
 		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+			<Visible>False</Visible>
+		</None>
+		<None Update="logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+			<Visible>False</Visible>
+		</None>
+		<None Update="logo.svg">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 			<Visible>False</Visible>

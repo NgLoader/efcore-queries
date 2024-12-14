@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<svg width="420" height="420" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <defs>
+  <linearGradient fx="0.62" fy="0.73" id="svg_5" x1="0" x2="1" y1="0" y2="0">
+   <stop id="jq_stop_2407" offset="0" stop-color="#4e10d3" stop-opacity="0.99"/>
+   <stop id="jq_stop_4753" offset="1" stop-color="#db1168" stop-opacity="0.99"/>
+  </linearGradient>
+ </defs>
+ <g class="layer">
+  <title>Layer 1</title>
+  <g id="svg_6" transform="translate(0, 1) matrix(0.95433, 0, 0, 0.878571, -77.6129, -7.2563)">
+   <path d="m507.54,249.56l-169.78,-0.86m-242.43,0.86l169.13,0m0.64,-138.9l16.48,0l0,278.9l-16.48,0l0,-278.9zm55.46,-1.1l16.48,0l0,278.9l-16.48,0l0,-278.9zm-235.17,133.01l10.01,0l0,13.31l-10.01,0l0,-13.31zm422.15,0.63l10.01,0l0,13.31l-10.01,0l0,-13.31z" fill="#ffffff" id="svg_3" stroke="url(#svg_5)" stroke-width="5"/>
+   <text fill="#ffffff" font-family="Helvetica" font-size="35" id="svg_4" letter-spacing="3" stroke="url(#svg_5)" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" text-anchor="middle" word-spacing="0" x="177.67" xml:space="preserve" y="236.33">EFCORE</text>
+   <text fill="#ffffff" font-family="Helvetica" font-size="40" id="svg_1" letter-spacing="3" stroke="url(#svg_5)" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" text-anchor="middle" word-spacing="1" x="427" xml:space="preserve" y="292">Queries</text>
+  </g>
+ </g>
+</svg>
