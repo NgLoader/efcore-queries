@@ -203,12 +203,10 @@ This approach is particularly useful for multiple search requests, as it elimina
 - GreaterThanOrEqual
 - LessThan
 - LessThanOrEqual
-
 - Contains
 - NotContains
 - StartsWith
 - EndsWith
-
 - Includes
 - NotIncludes
 
