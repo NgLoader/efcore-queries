@@ -19,6 +19,27 @@ To install the package, run the following command in your project:
 dotnet add package NgLoader.EFCore.Queries
 ```
 
+###Configuration
+
+To configure the behavior of the query parser, add the following section to your appsettings.json:
+
+```bash
+"Query": {
+  "Limits": {
+    "FilterCompositionDepth": 5,
+    "FilterConditionDepth": 5,
+    "SortLimit": 5,
+    "PageSizeLimit": 100
+  },
+  "DefaultPageSize": 10
+}
+```
+
+This configuration allows you to:
+
+- **Set limits** for query complexity (e.g., filter depth, sorting, and pagination).
+- **Define a default page size** for queries if none is specified.
+
 ## Usage
 
 ### Example: Role Mapping Extension
