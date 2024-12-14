@@ -1,6 +1,6 @@
 # efcore-queries
 
-[![Release Status](https://github.com/NgLoader/efcore-queries/workflows/Publish/badge.svg)](https://github.com/NgLoader/efcore-queries/releases/latest) [![Build Status](https://github.com/NgLoader/efcore-queries/actions/workflows/build.yml?query=workflow%3ABuild)
+[![Release Status](https://github.com/NgLoader/efcore-queries/workflows/Publish/badge.svg)](https://github.com/NgLoader/efcore-queries/releases/latest) [![Build Status](https://github.com/NgLoader/efcore-queries/workflows/Build/badge.svg)](https://github.com/NgLoader/efcore-queries/actions/workflows/build.yml?query=workflow%3ABuild)
 <img align="right" src="https://raw.githubusercontent.com/NgLoader/efcore-queries/refs/heads/master/logo.svg" height="200" width="200">
 
 `efcore-queries` is a lightweight, powerful, and flexible extension for Entity Framework Core (EF Core), designed to simplify query composition and execution. It enables the construction of dynamic queries in a more readable and maintainable way, making it easier to interact with databases. This project is specifically designed to receive HTTP requests in JSON format and parse those queries to perform simple database queries.
