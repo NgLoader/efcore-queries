@@ -17,16 +17,27 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove=".git" />
-	  <None Remove=".gitignore" />
-	  <None Remove="LICENSE.md" />
-	  <None Remove="README.md" />
-	  <None Remove="SECURITY.md" />
+		<None Remove=".git" />
+		<None Remove=".gitignore" />
+		<None Remove="SECURITY.md" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="LICENSE.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+			<Visible>False</Visible>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+			<Visible>False</Visible>
+		</None>
 	</ItemGroup>
 </Project>
