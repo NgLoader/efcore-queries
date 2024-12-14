@@ -154,7 +154,7 @@ This approach is particularly useful for multiple search requests, as it elimina
 
 ```json
 {
-  "filter": "<filter>",
+  "filter": [ "<filter>" ],
   "sorts": [
     {
       "key": "<string>",
@@ -188,7 +188,7 @@ This approach is particularly useful for multiple search requests, as it elimina
 {
     "filterType": "composition",
 	"operator": "<operator>", // see below (Composition Operators)
-	"conditions: ["<filter>"] // see above (Filter)
+	"conditions: [ "<filter>" ] // see above (Filter)
 }
 ```
 
