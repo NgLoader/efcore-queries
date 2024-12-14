@@ -64,6 +64,5 @@ jobs:
           VERSION=${{ github.ref_name }}
           VERSION=${VERSION#v}
           echo "Pushing NuGet package for version $VERSION"
-          dotnet nuget push ./bin/Release/NgLoader.EFCore.Queries.${VERSION}.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push ./bin/Release/NgLoader.EFCore.Queries.${VERSION}.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+          dotnet nuget push ./bin/Release/NgLoader.EFCore.Queries.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key "${{ secrets.NUGET_APIKEY }}" --skip-duplicate

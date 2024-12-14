@@ -7,7 +7,7 @@
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/NgLoader/efcore-queries</RepositoryUrl>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<NeutralLanguage>en</NeutralLanguage>
 		<Title>EFCore Queries</Title>
 		<Copyright>© NgLoader 2024</Copyright>
