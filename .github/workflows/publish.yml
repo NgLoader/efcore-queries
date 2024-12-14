@@ -22,10 +22,11 @@ jobs:
           fetch-depth: 2
           submodules: recursive
 
-    - name: Verify commit exists in origin/main
-      run: |
-        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-        git branch --remote --contains | grep origin/main
+      # Verify commit exists in origin/main
+      - name: Verify commit exists in origin/main
+        run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          git branch --remote --contains | grep origin/main
 
       # Set up .NET Core
       - name: Backend Setup .NET Core
@@ -48,13 +49,25 @@ jobs:
 
       # Build and publish
       - name: Backend Build
-        run: dotnet publish -c Release -o ../app -r linux-x64 --self-contained true /p:UseAppHost=true
+        run: |
+          VERSION=$(echo ${{ github.ref_name }} | sed 's/^v//')
+          echo "Building version $VERSION"
+          dotnet publish -c Release -o app -r linux-x64 --self-contained true /p:UseAppHost=true
 
-    - name: Test
-      run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
-    - name: Pack
-      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
-    - name: Push
-      run: dotnet nuget push NgLoader.EFCore.Queries.${VERSION}.nupkg --source https://nuget.pkg.github.com/acraven/index.json --api-key ${GITHUB_TOKEN}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Run tests
+      - name: Test
+        run: dotnet test --configuration Release --no-build
+        env:
+          VERSION: ${{ github.ref_name }}
+
+      # Pack the project
+      - name: Pack
+        run: dotnet pack --configuration Release --no-build --output .
+        env:
+          VERSION: ${{ github.ref_name }}
+
+      # Push the package to GitHub Packages
+      - name: Push
+        run: dotnet nuget push NgLoader.EFCore.Queries.${{ github.ref_name }}.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
