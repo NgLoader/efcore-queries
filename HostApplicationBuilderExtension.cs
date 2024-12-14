@@ -9,7 +9,7 @@ namespace NgLoader.Queries
 {
     public static class HostApplicationBuilderExtension
     {
-        public static void AddImprexQueries(this IHostApplicationBuilder builder)
+        public static void AddEFCoreQueries(this IHostApplicationBuilder builder)
         {
             builder.Services.Configure<QueryOptions>(builder.Configuration.GetSection("Query"));
 
