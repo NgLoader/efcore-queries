@@ -43,7 +43,7 @@ jobs:
           VERSION=${{ github.ref_name }}
           VERSION=${VERSION#v}
           echo "Building version $VERSION"
-          dotnet publish Imprex.Queries.csproj -c Release --self-contained true /p:UseAppHost=true /p:Version=$VERSION
+          dotnet publish EFCore.Queries.csproj -c Release --self-contained true /p:UseAppHost=true /p:Version=$VERSION
 
       - name: Run Tests
         run: |
@@ -57,7 +57,7 @@ jobs:
           VERSION=${{ github.ref_name }}
           VERSION=${VERSION#v}
           echo "Packing version $VERSION"
-          dotnet pack Imprex.Queries.csproj --configuration Release --no-build /p:PackageVersion=$VERSION /p:IncludeSymbols=true
+          dotnet pack EFCore.Queries.csproj --configuration Release --no-build /p:PackageVersion=$VERSION /p:IncludeSymbols=true
 
       - name: Push NuGet Package
         run: |
