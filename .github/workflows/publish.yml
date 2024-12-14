@@ -16,19 +16,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository code
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
           submodules: recursive
 
-      # Set up .NET Core
-      - name: Backend Setup .NET Core
+      - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      # Cache .NET dependencies
       - name: Cache .NET Dependencies
         uses: actions/cache@v3
         with:
@@ -37,31 +35,35 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      # Install dependencies
-      - name: Backend Install dependencies
+      - name: Install Dependencies
         run: dotnet restore
 
-      # Build and publish
-      - name: Backend Build
+      - name: Build and Publish
         run: |
-          VERSION=$(echo ${{ github.ref_name }} | sed 's/^v//')
+          VERSION=${{ github.ref_name }}
+          VERSION=${VERSION#v}
           echo "Building version $VERSION"
-          dotnet publish -c Release -o app -r linux-x64 --self-contained true /p:UseAppHost=true
+          dotnet publish Imprex.Queries.csproj -c Release -o app -r linux-x64 --self-contained true /p:UseAppHost=true /p:Version=$VERSION
 
-      # Run tests
-      - name: Test
-        run: dotnet test --configuration Release --no-build
-        env:
-          VERSION: ${{ github.ref_name }}
+      - name: Run Tests
+        run: |
+          VERSION=${{ github.ref_name }}
+          VERSION=${VERSION#v}
+          echo "Running tests for version $VERSION"
+          dotnet test --configuration Release --no-build
 
-      # Pack the project
-      - name: Pack
-        run: dotnet pack --configuration Release --no-build --output .
-        env:
-          VERSION: ${{ github.ref_name }}
+      - name: Pack Project
+        run: |
+          VERSION=${{ github.ref_name }}
+          VERSION=${VERSION#v}
+          echo "Packing version $VERSION"
+          dotnet pack Imprex.Queries.csproj --configuration Release --no-build /p:PackageVersion=$VERSION
 
-      # Push the package to GitHub Packages
-      - name: Push
-        run: dotnet nuget push NgLoader.EFCore.Queries.${{ github.ref_name }}.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
+      - name: Push NuGet Package
+        run: |
+          VERSION=${{ github.ref_name }}
+          VERSION=${VERSION#v}
+          echo "Pushing NuGet package for version $VERSION"
+          dotnet nuget push Imprex.Queries.${VERSION}.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
