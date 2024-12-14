@@ -19,7 +19,7 @@ To install the package, run the following command in your project:
 dotnet add package NgLoader.EFCore.Queries
 ```
 
-###Configuration
+## Configuration
 
 To configure the behavior of the query parser, add the following section to your appsettings.json:
 
