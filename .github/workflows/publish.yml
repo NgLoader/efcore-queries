@@ -57,7 +57,7 @@ jobs:
           VERSION=${{ github.ref_name }}
           VERSION=${VERSION#v}
           echo "Packing version $VERSION"
-          dotnet pack Imprex.Queries.csproj --configuration Release --no-build /p:PackageVersion=$VERSION
+          dotnet pack Imprex.Queries.csproj --configuration Release --no-build --output ./packages /p:PackageVersion=$VERSION
 
       - name: Push NuGet Package
         run: |
