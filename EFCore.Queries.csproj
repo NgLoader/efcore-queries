@@ -38,10 +38,6 @@ This project is specifically designed to receive HTTP requests in JSON format an
 			<PackagePath>\</PackagePath>
 			<Visible>False</Visible>
 		</None>
-		<None Update="logo.png">
-		  <Pack>True</Pack>
-		  <PackagePath>\</PackagePath>
-		</None>
 		<None Update="README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
