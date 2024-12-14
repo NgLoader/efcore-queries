@@ -22,12 +22,6 @@ jobs:
           fetch-depth: 2
           submodules: recursive
 
-      # Verify commit exists in origin/main
-      - name: Verify commit exists in origin/main
-        run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-          git branch --remote --contains | grep origin/main
-
       # Set up .NET Core
       - name: Backend Setup .NET Core
         uses: actions/setup-dotnet@v4
