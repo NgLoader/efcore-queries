@@ -43,7 +43,7 @@ jobs:
           VERSION=${{ github.ref_name }}
           VERSION=${VERSION#v}
           echo "Building version $VERSION"
-          dotnet publish Imprex.Queries.csproj -c Release -o app --self-contained true /p:UseAppHost=true /p:Version=$VERSION
+          dotnet publish Imprex.Queries.csproj -c Release --self-contained true /p:UseAppHost=true /p:Version=$VERSION
 
       - name: Run Tests
         run: |
@@ -64,6 +64,6 @@ jobs:
           VERSION=${{ github.ref_name }}
           VERSION=${VERSION#v}
           echo "Pushing NuGet package for version $VERSION"
-          dotnet nuget push Imprex.Queries.${VERSION}.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push NgLoader.EFCore.Queries.${VERSION}.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
